@@ -17,11 +17,6 @@
   },
   "bugs": "",
   "keywords": [],
-  "author": {
-    "name": "",
-    "email": "",
-    "url": ""
-  },
   "contributors": [],
   "scripts": {
     "build": "webpack --config webpack.config.js"
