@@ -16,13 +16,16 @@ export default {
   },
   plugins: [
     new HtmlWebpackPlugin({
-      template: './src/index.html'
+      template: './src/index.html',
+      filename: 'index.html'
     }),
     new CopyPlugin({
-      patterns: [{
-        from: path.resolve('manifest.json'),
-        to: path.resolve('dist')
-      }]
+      patterns: [
+        {
+          from: path.resolve('manifest.json'),
+          to: path.resolve('dist/manifest.json')
+        }
+      ]
     })
   ],
   module: {
@@ -39,7 +42,15 @@ export default {
             ]
           }
         }
-      }
+      },
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.svg$/,
+        use: ['@svgr/webpack'],
+      },
     ]
   },
   resolve: {

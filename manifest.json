@@ -1,8 +1,11 @@
 {
   "manifest_version": 3,
-  "name": "Create a Chrome Extension with React and Webpack",
-  "description": "Demo Chrome Extension that uses React and Webpack",
+  "name": "ListeryApp",
+  "description": "DESCR",
   "version": "1.0.0",
+  "permissions": [
+    "storage"
+  ],
   "action": {
     "default_popup": "index.html"
   },

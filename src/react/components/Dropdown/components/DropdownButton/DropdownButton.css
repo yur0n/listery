@@ -1,0 +1,26 @@
+
+.dropdown-btn {
+  display: flex;
+  align-items: center;
+  max-width: 209px;
+  min-width: 100px;
+  overflow: hidden;
+  border-radius: 2px;
+  /* width: 88px; */
+  height: 6px;
+  background-color: #F5F5F5;
+  cursor: pointer;
+  padding: 6px;
+  font-family: 'Montserrat';
+  font-weight: 800;
+  font-size: 8.29px;
+  line-height: 10px;
+  color: #2F3660;
+}
+
+.toggle-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+}

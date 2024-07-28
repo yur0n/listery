@@ -1,0 +1,21 @@
+.dropdown-item {
+  padding: 6px;
+  width: 100%;
+  /* border-radius: 0.5rem; */
+  cursor: pointer;
+  font-family: 'Montserrat';
+  background-color: #F5F5F5;
+  font-weight: 800;
+  font-size: 8.29px;
+  line-height: 10px;
+  color: #2F3660;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 18px;
+}
+
+.dropdown-item:hover {
+  background-color: #E08849;
+}
