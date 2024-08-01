@@ -1,13 +1,11 @@
 import { useState } from 'react';
 
-import OTP from './OTP'
+import OTP from '../components/OTP'
 
-const Login2 = ({ chooseView }) => {
+const Login2 = ({ handleLogin }) => {
 	const [ otpWrong, setOtpWrong ] = useState(false);
 
-	const otpResult = (result) => {
-		result ? chooseView('main') : setOtpWrong(true);
-	}
+	const otpResult = (result) => result ? handleLogin(true) : setOtpWrong(true);
 	
   return (
     <div className='main'>

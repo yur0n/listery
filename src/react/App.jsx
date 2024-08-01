@@ -1,41 +1,54 @@
-import {useState} from 'react';
+import {useState, useEffect} from 'react';
 
-import Header from './components/Header'
-import Login1 from './components/Login1';
-import Login2 from './components/Login2';
-import Registration from './components/Registration'
-import Main from './components/Main';
+import Header from './views/Header'
+import Login1 from './views/Login1';
+import Login2 from './views/Login2';
+import Registration from './views/Registration'
+import Success from './views/success';
+import Main from './views/Main';
 
 const App = () => {
-  const [currentView, setCurrentView] = useState('login1');
+  const [currentView, setCurrentView] = useState();
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
+  useEffect(() => {
+    chrome.storage.local.get(['userLoggedIn']).then(({ userLoggedIn }) => {
+      logInOff(userLoggedIn);
+    });
+  }, []);
 
+  async function handleLogin(status) {
+    await chrome.storage.local.set({ userLoggedIn: status });
+    logInOff(status);
+  };
 
-  const chooseView = (view) => {
+  function logInOff(isIn) {
+    setIsLoggedIn(isIn);
+    isIn ? chooseView('main') : chooseView('login1');
+  }
+
+  function chooseView(view) {
     setCurrentView(view)
-    console.log(view)
   }
 
   return (
     <main>
-      <Header chooseView={chooseView}/>
-      <Main chooseView={chooseView}/>
-      {/* {currentView === 'login1' && (
+      <Header isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
+      {currentView === 'success' && (
+        <Success chooseView={chooseView}/>
+      )}
+      {currentView === 'login1' && (
         <Login1 chooseView={chooseView}/>
       )}
       {currentView === 'login2' && (
-        <Login2 chooseView={chooseView}/>
+        <Login2 handleLogin={handleLogin} />
       )}
       {currentView === 'registration' && (
-        <Registration chooseView={chooseView}/>
+        <Registration />
       )}
       {currentView === 'main' && (
         <Main chooseView={chooseView}/>
-      )} */}
-			{/* <button onClick={scan}>SCAN</button>
-      <h2>Title: {data.title}</h2>
-      <h2>Price: {data.price}</h2>
-      <h2>Somethong: {data.extra}</h2> */}
+      )}
     </main>
   );
 };

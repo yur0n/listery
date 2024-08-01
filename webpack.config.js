@@ -1,9 +1,11 @@
 import HtmlWebpackPlugin from 'html-webpack-plugin';
 import CopyPlugin from 'copy-webpack-plugin';
+import Dotenv from 'dotenv-webpack';
 import path from 'path';
 
 export default {
-  mode: 'production',
+  devtool: 'source-map',
+  mode: 'development',
   entry: {
     contentScript: './src/content/index.js',
     background: './src/background/index.js',
@@ -15,6 +17,7 @@ export default {
     clean: true
   },
   plugins: [
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: './src/index.html',
       filename: 'index.html'

@@ -1,7 +1,7 @@
-import Button from '../logos/login1-button.svg'
+import Button from '../icons/login1_button.svg'
 
 const Login1 = ({ chooseView }) => {
-
+	
   return (
     <div className='main'>
 			<div className='login-title'>

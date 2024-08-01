@@ -130,6 +130,7 @@ body {
 .wish-info .wish-description {
   display: flex;
   align-items: flex-start;
+  margin-left: -1px;
   textarea {
     box-sizing: border-box;
     width: 221px;
@@ -140,6 +141,7 @@ body {
     line-height: 10px;
     padding: 6px;
     border: none;
+    border-radius: 2px;
     outline: none;
     resize: none;
     background-color: #F5F5F5;
@@ -147,18 +149,76 @@ body {
   }
 }
 
+.wish-info .wish-image-container {
+  width: 102px;
+  height: 102px;
+  margin-left: 30px;
+  border: none;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.wish-info .wish-image-empty {
+  cursor: pointer;
+  background-image: url('../images/wish-image-empty.png');
+}
+
+.wish-info .wish-image-full {
+  position: relative;
+  background-image: url('../images/wish-image-full.png');
+}
+
+.wish-info .wish-image-container img {
+  width: 90%;
+  height: 90%;
+  /* padding: 10px; */
+  object-fit: contain;
+}
+
+.wish-info .wish-image-full .wish-image-clear {
+  position: absolute;
+  top: 5px; /* Adjust top position as needed */
+  right: 5px; /* Adjust right position as needed */
+  z-index: 1; /* Ensure it's above the image */
+  cursor: pointer;
+}
+
+.send-wish-btn {
+  width: 176px;
+  height: 32px;
+  margin: 18px 0 0 43px;
+  border: none;
+  border-radius: 3px;
+  background-color: #EA894C;
+  font-size: 10px;
+  font-weight: 600;
+  color: #FFFFFF;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  user-select: none;
+}
+
+.send-wish-btn.disabled {
+  background-color: #E5E6EA;
+  color: #000000;
+}
+
 .user-info {
   margin-top: 18px;
   margin-left: 30px;
-  display: flex; /* Make the container a flex container */
-  flex-direction: row; /* Arrange items vertically */
-  align-items: center; /* Center items vertically */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
   span {
     color: #1B2341;
     margin-left: 11px;
     font-size: 10px;
     line-height: 12.19px;
     font-weight: 700;
+    user-select: none;
   }
 }
 
@@ -184,8 +244,8 @@ body {
 
 .login1-bottom-button {
   margin-top: 133px;
-  width: 155px;
-  height: 59px;
+  /* width: 155px;
+  height: 59px; */
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -194,8 +254,8 @@ body {
 }
 
 .login1-button-undertext {
-  width: 155px;
-  height: 22px;
+  /* width: 168px;
+  height: 22px; */
   line-height: 21.3px;
   font-weight: 400;
   font-size: 9px;
@@ -222,12 +282,11 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
-  text-align: center;
   gap: 15px;
 }
 
 .login2-bottom-text {
-  width: 200px;
+  /* width: 200px; */
   height: 26px;
   display: flex;
   flex-direction: row;
@@ -243,28 +302,15 @@ body {
     color: white;
     font-size: 10px;
     font-weight: 700;
-    display: inline-block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 16px;
     height: 16px;
     border-radius: 50%;
     background-color: #E18E4C;
   }
 }
-
-.main-main-bottom-btn {
-  width: 176px;
-  height: 32px;
-  border: none;
-  border-radius: 3px;
-  background-color: #EA894C;
-  font-size: 10px;
-  font-weight: 600;
-  color: #FFFFFF;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
 
 .login1-button {
   cursor: pointer;
@@ -280,6 +326,13 @@ body {
   width: 129px;
   height: 127px;
   background-image: url('../images/qr.png');
+}
+
+.wish-success {
+  margin-top: 82px;
+  width: 149px;
+  height: 193px;
+  background-image: url('../images/success.png');
 }
 
 .logo-container {

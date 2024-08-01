@@ -1,9 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState, useRef } from "react";
 
-import DropdownButton from "../DropdownButton/DropdownButton";
-import DropdownContent from "../DropdownContent/DropdownContent";
-
-import "./Dropdown.css";
+import DropdownButton from "./DropdownButton";
+import DropdownContent from "./DropdownContent";
 
 const Dropdown = ({ buttonText, content }) => {
   const [open, setOpen] = useState(false);
@@ -31,9 +29,10 @@ const Dropdown = ({ buttonText, content }) => {
 
   useEffect(() => {
     const handler = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+      if ((dropdownRef.current && !dropdownRef.current.contains(event.target))
+        || contentRef.current.contains(event.target) ) {
         setOpen(false);
-      }
+      } 
     };
 
     document.addEventListener("click", handler);

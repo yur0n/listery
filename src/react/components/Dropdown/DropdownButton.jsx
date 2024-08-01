@@ -1,8 +1,6 @@
 import { forwardRef } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
 
-import "./DropdownButton.css";
-
 const DropdownButton = forwardRef((props, ref) => {
   const { children, toggle, open } = props;
 

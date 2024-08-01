@@ -1,4 +1,3 @@
-import "./DropdownItem.css";
 
 const DropdownItem = ({ children, onClick }) => {
   return (

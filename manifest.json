@@ -4,7 +4,7 @@
   "description": "DESCR",
   "version": "1.0.0",
   "permissions": [
-    "storage"
+    "storage", "alarms", "background"
   ],
   "action": {
     "default_popup": "index.html"

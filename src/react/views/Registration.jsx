@@ -1,5 +1,5 @@
 
-const Registration = ({ chooseView }) => {
+const Registration = () => {
 
   return (
     <div className='main'>
