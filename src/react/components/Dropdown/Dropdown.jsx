@@ -11,7 +11,8 @@ const Dropdown = ({ buttonText, content }) => {
   const buttonRef = useRef();
   const contentRef = useRef();
 
-  const toggleDropdown = () => {
+  const toggleDropdown = (e) => {
+    e.stopPropagation();
     if (!open) {
       const spaceRemaining =
         window.innerHeight - buttonRef.current.getBoundingClientRect().bottom;

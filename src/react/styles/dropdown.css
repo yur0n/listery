@@ -17,7 +17,7 @@
   cursor: pointer;
   padding: 6px;
   font-family: 'Montserrat';
-  font-weight: 800;
+  font-weight: 500;
   font-size: 8.29px;
   line-height: 10px;
   color: #2F3660;
@@ -34,7 +34,7 @@
   position: absolute;
   max-width: 100%;
   display: flex;
-  row-gap: 1px;
+  align-items: center;
   flex-direction: column;
   margin-top: 0.5rem;
   background-color: #F5F5F5;
@@ -68,7 +68,7 @@
   cursor: pointer;
   font-family: 'Montserrat';
   background-color: #F5F5F5;
-  font-weight: 800;
+  font-weight: 500;
   font-size: 8.29px;
   line-height: 10px;
   color: #2F3660;

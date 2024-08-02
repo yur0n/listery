@@ -13,7 +13,7 @@ const OTP = ({ otpResult }) => {
 				setIsInputDisabled(false);
 				setOtp('');
 			});
-			setOtp('******');
+			setOtp('*******');
     } else {
       setIsInputDisabled(false);
     }
@@ -25,13 +25,15 @@ const OTP = ({ otpResult }) => {
 			value={otp}
 			onChange={setOtp}
 			numInputs={6}
-			renderSeparator={<span>&nbsp;</span>}
+			renderSeparator={(index) => (
+        <span style={index === 2 ? { marginRight: '20px' } : {}}>&nbsp;</span>
+      )}
 			renderInput={(props) => <input disabled={isInputDisabled} {...props} />}
 			inputStyle={{
 				caretColor: 'transparent',
-				width: '32px',
+				width: '28px',
 				lineHeight: '88px',
-				paddingBottom: '8px',
+				padding: '2px 0 9px 0',
 				outline: 'none',
 				border: 'none',
 				borderBottom: '2px solid #9295a99a',
@@ -42,7 +44,7 @@ const OTP = ({ otpResult }) => {
 				userSelect: 'none',
 			}}
 			containerStyle={{
-				marginTop: '80px',
+				marginTop: '82px',
 				height: '46px',
 				alignItems: 'normal'
 			}}

@@ -1,7 +1,16 @@
+@font-face {
+  font-family: Montserrat;
+  src: url('./fonts/Montserrat-VariableFont_wght.ttf') format('truetype');
+}
+
 body {
   background: none;
+  box-shadow: 0px 4px 31.6px -8px rgba(0, 0, 0, 0.22);
 	margin: 0;
-	font-family: 'Montserrat';
+  font-family: "Montserrat", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
 }
 
 .header {
@@ -18,16 +27,16 @@ body {
     margin-right: 11px;
     font-size: 10px;
     font-weight: 600;
-    line-height: 12px;
+    line-height: 12.19px;
     color: white;
     cursor: pointer;
-    transition: transform 0.1s ease-in-out;
+    /* transition: transform 0.1s ease-in-out; */
   }
 }
 
-.header span:hover {
+/* .header span:hover {
   transform: scale(1.01);
-}
+} */
 
 .main {
   width: 302px;
@@ -55,24 +64,24 @@ body {
 
 .wish-refresh {
   cursor: pointer;
-  margin-left: 146px;
+  margin-left: 151px;
   margin-bottom: 8px;
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 5px;
   span {
-    font-size: 9px;
+    font-size: 8.29px;
     font-weight: 500;
     line-height: 13px;
     color: #EA894C;
   }
-  transition: transform 0.1s ease-in-out;
+  /* transition: transform 0.1s ease-in-out; */
 }
 
-.wish-refresh:hover {
+/* .wish-refresh:hover {
   transform: scale(1.02);
-}
+} */
 
 .wish-info {
   display: flex;
@@ -80,10 +89,17 @@ body {
   gap: 6px;
 }
 
-.wish-info div {
+.wish-info > div {
   display: flex;
   align-items: center;
   gap: 15px;
+}
+
+.wish-info div input::placeholder,
+.wish-info div textarea::placeholder {
+  color: #9295A9;
+  font-family: "Montserrat";
+  font-weight: 500;
 }
 
 .wish-info .wish-title input {
@@ -96,7 +112,7 @@ body {
   border-radius: 2px;
   background-color: #F5F5F5;
   font-family: 'Montserrat';
-  font-weight: 800;
+  font-weight: 500;
   font-size: 8.29px;
   line-height: 10px;
   color: #2F3660;
@@ -112,7 +128,7 @@ body {
   outline: none;
   background-color: #F5F5F5;
   font-family: 'Montserrat';
-  font-weight: 800;
+  font-weight: 500;
   font-size: 8.29px;
   line-height: 10px;
   color: #2F3660;
@@ -136,7 +152,7 @@ body {
     width: 221px;
     height: 69px;
     font-family: 'Montserrat';
-    font-weight: 800;
+    font-weight: 500;
     font-size: 8.29px;
     line-height: 10px;
     padding: 6px;
@@ -160,7 +176,7 @@ body {
 }
 
 .wish-info .wish-image-empty {
-  cursor: pointer;
+  user-select: none;
   background-image: url('../images/wish-image-empty.png');
 }
 
@@ -258,7 +274,7 @@ body {
   height: 22px; */
   line-height: 21.3px;
   font-weight: 400;
-  font-size: 9px;
+  font-size: 8.29px;
   span {
     font-weight: 500;
     text-decoration: underline;
@@ -292,7 +308,8 @@ body {
   flex-direction: row;
   align-items: center;
   font-weight: 500;
-  font-size: 9px;
+  font-size: 8.29px;
+  line-height: 13px;
   color: #1B2341D4;
   span {
     font-weight: 700;
@@ -314,12 +331,12 @@ body {
 
 .login1-button {
   cursor: pointer;
-  transition: transform 0.3s ease-in-out;
+  /* transition: transform 0.3s ease-in-out; */
 }
 
-.login1-button:hover {
+/* .login1-button:hover {
   transform: scale(1.05);
-}
+} */
 
 .qr-code {
   margin-top: 89px;

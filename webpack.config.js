@@ -4,8 +4,9 @@ import Dotenv from 'dotenv-webpack';
 import path from 'path';
 
 export default {
-  devtool: 'source-map',
-  mode: 'development',
+  // devtool: 'source-map',
+  // mode: 'development',
+  mode: 'production',
   entry: {
     contentScript: './src/content/index.js',
     background: './src/background/index.js',

@@ -1,16 +1,9 @@
 // chrome.runtime.onInstalled.addListener(async ({ reason }) => {
-// 	await chrome.alarms.create('refreshToken', {
-// 		periodInMinutes: 60
-// 	});
-// });
-
-// chrome.alarms.onAlarm.addListener(alarm => {
-//   if (alarm.name === 'refreshToken') {
-//     refreshToken();
-//   }
+	
 // });
 
 import axios from "axios";
+import currencies from "../utils/currencies.js";
 
 const api = axios.create({
   baseURL: process.env.API_URL,
@@ -51,7 +44,8 @@ async function loginUser(message) {
 	.then(async res => {
 		console.log(res.data)
 		if (res.data.refresh) {
-			const { token, refresh, expire, user: { username, id, photo } } = res.data;
+			const { token, refresh, expire, user: { username, id, photo: photoUrl } } = res.data;
+			const photo = photoUrl || 'https://static.vecteezy.com/system/resources/previews/008/302/458/non_2x/eps10-orange-user-solid-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg'
 			await chrome.storage.local.set({ refresh, token, expire, username, id, photo });
 			return true;
 		} else {
@@ -154,6 +148,7 @@ async function sendWish(message) {
 		description: description,
 		link: url,
 		price: {
+			currencySymbol: currencies[currency],
 			value: price,
 			currency: {
 				name: currency
