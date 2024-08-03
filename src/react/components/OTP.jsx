@@ -7,13 +7,14 @@ const OTP = ({ otpResult }) => {
 
   useEffect(() => {
     if (otp.length === 6) {
-      setIsInputDisabled(true);
+			setIsInputDisabled(true);
       chrome.runtime.sendMessage({ name: 'loginUser', data: otp }, (response) => {
 				otpResult(response);
 				setIsInputDisabled(false);
 				setOtp('');
 			});
-			setOtp('*******');
+			const otpPlaceholder = otp + 'Q';
+			setOtp(otpPlaceholder);
     } else {
       setIsInputDisabled(false);
     }

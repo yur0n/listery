@@ -30,7 +30,7 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
 
 async function loginUser(message) {
 	await new Promise(res => setTimeout(res, 1000))
-	return true;
+
 	const data = {
 		code: message.data,
 		meta: {
@@ -42,7 +42,6 @@ async function loginUser(message) {
 
 	const status = await api.post('/devices/activate', data)
 	.then(async res => {
-		console.log(res.data)
 		if (res.data.refresh) {
 			const { token, refresh, expire, user: { username, id, photo: photoUrl } } = res.data;
 			const photo = photoUrl || 'https://static.vecteezy.com/system/resources/previews/008/302/458/non_2x/eps10-orange-user-solid-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg'
@@ -130,7 +129,7 @@ async function updateLists(token) {
 }
 
 async function sendWish(message) {
-
+	
 	const {
 		title,
 		wishlist,
@@ -148,9 +147,10 @@ async function sendWish(message) {
 		description: description,
 		link: url,
 		price: {
-			currencySymbol: currencies[currency],
+			currencySymbol: currencies[currency] || '$',
 			value: price,
 			currency: {
+				symbol: currencies[currency] || '$',
 				name: currency
 			}
 		}
@@ -163,10 +163,7 @@ async function sendWish(message) {
 			Authorization: `Bearer ${token}`
 		}
 	})
-	.then(async res => {
-		console.log(res)
-		return true;
-	})
+	.then(res => true)
 	.catch(e => {
 		console.log(e);
 		return false;

@@ -4,7 +4,7 @@ import Header from './views/Header'
 import Login1 from './views/Login1';
 import Login2 from './views/Login2';
 import Registration from './views/Registration'
-import Success from './views/success';
+import Success from './views/Success';
 import Main from './views/Main';
 
 const App = () => {
@@ -35,7 +35,7 @@ const App = () => {
     <main>
       <Header isLoggedIn={isLoggedIn} handleLogin={handleLogin} />
       {currentView === 'success' && (
-        <Success chooseView={chooseView}/>
+        <Success />
       )}
       {currentView === 'login1' && (
         <Login1 chooseView={chooseView}/>

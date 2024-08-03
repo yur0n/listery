@@ -32,14 +32,13 @@ function Wish({ chooseView }) {
 		if (!newWish.title) return;
 		setIsLoading(true);
 		chrome.runtime.sendMessage({ name: 'sendWish', data: newWish }, (response) => {
-			if (response) {
+			new Promise(res1 => setTimeout(() => {
 				setIsLoading(false);
-				chooseView('success')
-				// new Promise(res => setTimeout(() => {
-				// 	chooseView('main');
-				// 	res();
-				// }, 2500))
-			}
+				res1();
+				if (response) {
+					chooseView('success');
+				}
+			}, 500))
 		});
 	}
 
@@ -48,9 +47,12 @@ function Wish({ chooseView }) {
 			await scan(null, true);
 			const data = await chrome.storage.local.get(['lists']);
 			const updateLists = data.lists;
-			setWishlist(updateLists[0]);
-			setLists(updateLists);
-			setNewWish(prevState => ({ ...prevState, wishlist: updateLists[0].id }))
+			if (updateLists) {
+				const myWishes = updateLists.find(list => list.name === 'My wishes')
+				setWishlist(myWishes);
+				setLists(updateLists);
+				setNewWish(prevState => ({ ...prevState, wishlist: updateLists[0].id }))
+			}
 		})()
 
   }, []);
@@ -64,6 +66,8 @@ function Wish({ chooseView }) {
     setNewWish({...newWish, ...data});
 		setIsLoading(false);
   };
+
+	const filteredLists = lists.filter(list => list.id !== wishlist.id);
 
 	return (
 		<>
@@ -80,7 +84,7 @@ function Wish({ chooseView }) {
 			</div>
 			<div className='wish-info'>
 				<div className='wish-title' style={{ marginLeft: '-2px' }}>
-					<TitleSvg /><input placeholder='Add title' type="text" value={newWish.title} onChange={(e) => updateWish('title', e.target.value)} />
+					<TitleSvg /><input placeholder='Add title' maxlength='35' type="text" value={newWish.title} onChange={(e) => updateWish('title', e.target.value)} />
 				</div>
 				<div className='wish-list'>
 					<ListSvg />
@@ -88,7 +92,7 @@ function Wish({ chooseView }) {
 						buttonText={wishlist.name}
 						content={
 							<>
-								{lists.map(list => (
+								{filteredLists.map(list => (
 									<DropdownItem 
 										onClick={() => {
 											setWishlist({ id: list.id, name: list.name })
@@ -104,14 +108,16 @@ function Wish({ chooseView }) {
 				</div>
 				<div className='wish-price'>
 					<PriceSvg />
-					<input 
+					<input
+						maxlength='15'
 						placeholder='00.00'
 						className='input1' 
 						type="text" 
 						value={newWish.price} 
 						onChange={(e) => updateWish('price', e.target.value)} 
 					/>
-					<input 
+					<input
+						maxlength='3'
 						placeholder='USD'
 						className='input2'
 						type="text" 
@@ -119,7 +125,7 @@ function Wish({ chooseView }) {
 						onChange={(e) => updateWish('currency', e.target.value)} />
 				</div>
 				<div className='wish-description'>
-					<DescriptionSvg /><textarea placeholder='Add description' value={newWish.description} onChange={(e) => updateWish('description', e.target.value)} />
+					<DescriptionSvg /><textarea maxlength='200' placeholder='Add description' value={newWish.description} onChange={(e) => updateWish('description', e.target.value)} />
 				</div>
 				<div>
 					{

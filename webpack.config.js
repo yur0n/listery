@@ -28,6 +28,10 @@ export default {
         {
           from: path.resolve('manifest.json'),
           to: path.resolve('dist/manifest.json')
+        },
+        {
+          from: path.resolve('icons'),
+          to: path.resolve('dist/icons')
         }
       ]
     })

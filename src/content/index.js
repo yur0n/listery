@@ -32,7 +32,8 @@ function getData() {
 	};
 
   for (let i = 0; i < markets.length ; i++) {
-    const info = markets[i]();
+    const infoUnparsed = markets[i]();
+    const info = { ...infoUnparsed, description: infoUnparsed.description.slice(0, 199), title: infoUnparsed.title.slice(0, 34) }
     if (info) {
       for (const key in info) {
         if (info.hasOwnProperty(key) && !data[key]) {
@@ -42,6 +43,7 @@ function getData() {
     }
     if (data.title && data.price && data.currency && data.description && data.imgUrl && data.url) break;
   }
+  data
   console.log(data)
   return data;
 }
@@ -54,7 +56,7 @@ function byMeta() {
     || document.querySelector('meta[property="product:price:currency"]')?.content;
   const description = document.querySelector('meta[property="og:description"]')?.content;
   const imgUrl = document.querySelector('meta[property="og:image"]')?.content;
-  const url = document.querySelector('meta[property="og:url"]')?.content || window.location.href;
+  const url = window.location.href; // || document.querySelector('meta[property="og:url"]')?.content;
   return { title, price, imgUrl, currency, url, description };
 }
 
@@ -96,12 +98,11 @@ function byScript() {
       : Array.isArray(product.image) 
         ? product.image?.[0].contentURL || product.image[0]
         : product.image?.url || product.image?.contentURL;
-    console.log(imgUrl)
     if (imgUrl && !imgUrl?.includes('http')) imgUrl = 'https:' + imgUrl;
     const offers = Array.isArray(product.offers) ? product.offers[0] : product.offers
     const price = offers?.price || offers?.priceSpecification?.price;
     const currency = offers?.priceCurrency || offers?.priceSpecification?.priceCurrency;
-    const url = offers?.url || window.location.href;
+    const url = window.location.href; // offers?.url;
     return { title, price, imgUrl, currency, url, description };
   } else {
     return null;
