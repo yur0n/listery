@@ -84,7 +84,7 @@ function Wish({ chooseView }) {
 			</div>
 			<div className='wish-info'>
 				<div className='wish-title' style={{ marginLeft: '-2px' }}>
-					<TitleSvg /><input placeholder='Add title' maxlength='35' type="text" value={newWish.title} onChange={(e) => updateWish('title', e.target.value)} />
+					<TitleSvg /><input placeholder='Add title' maxLength='35' type="text" value={newWish.title} onChange={(e) => updateWish('title', e.target.value)} />
 				</div>
 				<div className='wish-list'>
 					<ListSvg />
@@ -109,7 +109,7 @@ function Wish({ chooseView }) {
 				<div className='wish-price'>
 					<PriceSvg />
 					<input
-						maxlength='15'
+						maxLength='15'
 						placeholder='00.00'
 						className='input1' 
 						type="text" 
@@ -117,7 +117,7 @@ function Wish({ chooseView }) {
 						onChange={(e) => updateWish('price', e.target.value)} 
 					/>
 					<input
-						maxlength='3'
+						maxLength='3'
 						placeholder='USD'
 						className='input2'
 						type="text" 
@@ -125,7 +125,7 @@ function Wish({ chooseView }) {
 						onChange={(e) => updateWish('currency', e.target.value)} />
 				</div>
 				<div className='wish-description'>
-					<DescriptionSvg /><textarea maxlength='200' placeholder='Add description' value={newWish.description} onChange={(e) => updateWish('description', e.target.value)} />
+					<DescriptionSvg /><textarea maxLength='200' placeholder='Add description' value={newWish.description} onChange={(e) => updateWish('description', e.target.value)} />
 				</div>
 				<div>
 					{
