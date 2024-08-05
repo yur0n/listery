@@ -129,7 +129,7 @@ async function updateLists(token) {
 }
 
 async function sendWish(message) {
-	
+
 	const {
 		title,
 		wishlist,

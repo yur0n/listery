@@ -44,14 +44,15 @@ function Wish({ chooseView }) {
 
 	useEffect(() => {
 		(async function() {
-			await scan(null, true);
+			await scan();
 			const data = await chrome.storage.local.get(['lists']);
 			const updateLists = data.lists;
 			if (updateLists) {
 				const myWishes = updateLists.find(list => list.name === 'My wishes')
+				console.log(myWishes)
 				setWishlist(myWishes);
 				setLists(updateLists);
-				setNewWish(prevState => ({ ...prevState, wishlist: updateLists[0].id }))
+				setNewWish(prevState => ({ ...prevState, wishlist: myWishes.id }))
 			}
 		})()
 
@@ -62,7 +63,7 @@ function Wish({ chooseView }) {
     const tabs = await chrome.tabs.query({active: true, currentWindow: true});
     const activeTab = tabs[0];
     const data = await chrome.tabs.sendMessage(activeTab.id, { name: 'scan' }).catch(console.log);
-		await new Promise(res => setTimeout(res, 1000))
+		await new Promise(res => setTimeout(res, 1000)) // 1 sec loading imitation
     setNewWish({...newWish, ...data});
 		setIsLoading(false);
   };

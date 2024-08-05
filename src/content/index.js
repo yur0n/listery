@@ -8,7 +8,7 @@ chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
 async function isLink(url) {
   try {
     const response = await fetch(url, { method: 'HEAD' });
-    return response.ok; // true if status is 200-299
+    return response.ok;
   } catch (e) {
     return false;
   }
@@ -133,7 +133,7 @@ function bruteForce() {
     priceEls.forEach(el => {
       const priceText = el.innerText
       if (/\d/.test(priceText)) {
-        price = priceText.replace(/[^0-9.]/g, '');
+        price = priceText.replace(/[^0-9.,]/g, '');
         return;
       }
     });
@@ -203,7 +203,7 @@ function amazon() {
 function alibaba() {
   try {
     const priceDiv = document.querySelector('.product-price');
-    const price = priceDiv?.querySelector('span')?.innerText.replace(/[^0-9.]/g, '');
+    const price = priceDiv?.querySelector('span')?.innerText.replace(/[^0-9.,]/g, '');
     const currency = document.querySelector('[data-tnhkey="Language-Text"]')?.innerText.slice(-3);
     return { price, currency }
   } catch (e) {
@@ -228,18 +228,26 @@ function allegro() {
 }
 
 function etsy() {
-  const data = byScript();
-  const price = document.querySelector('.wt-text-title-larger.wt-mr-xs-1')?.textContent.trim().replace(/[^0-9.]/g, '');
-  data.price = price;
+  try {
+    const data = byScript();
+    const price = document.querySelector('.wt-text-title-larger.wt-mr-xs-1')?.textContent.trim().replace(/[^0-9.,]/g, '');
+    data.price = price;
+  } catch (e) {
+    console.log(e)
+  }
   return data;
 }
 
 function superpharm() {
-  const data = byMeta();
-  const price = document.querySelector('span[data-price-type="finalPrice"]')?.dataset.priceAmount;
-  const description = document.querySelector('meta[name="description"]')?.content;
-  data.price = price;
-  data.description = description;
+  try {
+    const data = byMeta();
+    const price = document.querySelector('span[data-price-type="finalPrice"]')?.dataset.priceAmount;
+    const description = document.querySelector('meta[name="description"]')?.content;
+    data.price = price;
+    data.description = description;
+  } catch (e) {
+    console.log(e)
+  }
   return data;
 }
 
