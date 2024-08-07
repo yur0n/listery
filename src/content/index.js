@@ -228,8 +228,8 @@ function allegro() {
 }
 
 function etsy() {
+  const data = byScript();
   try {
-    const data = byScript();
     const price = document.querySelector('.wt-text-title-larger.wt-mr-xs-1')?.textContent.trim().replace(/[^0-9.,]/g, '');
     data.price = price;
   } catch (e) {
@@ -239,8 +239,8 @@ function etsy() {
 }
 
 function superpharm() {
+  const data = byMeta();
   try {
-    const data = byMeta();
     const price = document.querySelector('span[data-price-type="finalPrice"]')?.dataset.priceAmount;
     const description = document.querySelector('meta[name="description"]')?.content;
     data.price = price;
