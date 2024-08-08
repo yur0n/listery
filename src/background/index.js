@@ -44,7 +44,7 @@ async function loginUser(message) {
 	.then(async res => {
 		if (res.data.refresh) {
 			const { token, refresh, expire, user: { username, id, photo: photoUrl } } = res.data;
-			const photo = photoUrl || 'https://static.vecteezy.com/system/resources/previews/008/302/458/non_2x/eps10-orange-user-solid-icon-or-logo-in-simple-flat-trendy-modern-style-isolated-on-white-background-free-vector.jpg'
+			const photo = photoUrl || 'https://api.listery.app/public/1723100250545-user_placeholder.png'
 			await chrome.storage.local.set({ refresh, token, expire, username, id, photo });
 			return true;
 		} else {
@@ -143,12 +143,12 @@ async function sendWish(message) {
 	const data = {
 		name: title,
 		lists: [wishlist],
-		images: [imgUrl],
+		images: imgUrl ? [imgUrl] : [],
 		description: description,
 		link: url,
 		price: {
 			currencySymbol: currencies[currency] || '$',
-			value: price,
+			value: price.trim().replace(/[^0-9.]/g, ''),
 			currency: {
 				symbol: currencies[currency] || '$',
 				name: currency
